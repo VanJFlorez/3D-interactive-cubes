@@ -70,6 +70,8 @@
 
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#" id="cube-id"></a>
+      <a href="#" id="cube-uuid"></a>
       <a href="#">About</a>
       <a href="#">Services</a>
       <a href="#">Clients</a>
@@ -84,8 +86,10 @@
 
     <script>
       /* Set the width of the side navigation to 250px */
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
+      function openNav(id, uuid) {
+        document.getElementById("mySidenav").style.width = "500px";
+        document.getElementById("cube-id").innerText = id;
+        document.getElementById("cube-uuid").innerText = uuid;
       }
 
       /* Set the width of the side navigation to 0 */
@@ -191,7 +195,7 @@
             INTERSECTED = intersects[ 0 ].object;
             INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
             INTERSECTED.material.emissive.setHex( 0xff0000 );
-            openNav();
+            openNav(INTERSECTED.id, INTERSECTED.uuid);
           }
 
         } else {

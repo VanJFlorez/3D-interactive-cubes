@@ -4,12 +4,57 @@
 		<title>Juan Camilo intercative 3D demo</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="main.css">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    
+    <!-- MODAL STYLES -->
+    <style>
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content/Box */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+      }
+
+      /* The Close Button */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      } 
+    </style>
+
+
 		<style>
 			body {
 				background-color: #f0f0f0;
 				color: #444;
-			}
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
 			a {
 				color: #08f;
 			}
@@ -66,12 +111,14 @@
 
 		</style>
 	</head>
-	<body>
 
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a href="#" id="cube-id"></a>
       <a href="#" id="cube-uuid"></a>
+      <!-- <iframe id="cube-iframe"></iframe> -->
+      <iframe width="875" height="492" src="https://www.youtube.com/embed/8cgp2WNNKmQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      
       <a href="#">About</a>
       <a href="#">Services</a>
       <a href="#">Clients</a>
@@ -84,9 +131,25 @@
     <script>
       /* Set the width of the side navigation to 250px */
       function openNav(id, uuid) {
+        youtubeURLs = [
+          "https://www.youtube.com/watch?v=S530Vwa33G0",
+          "https://www.youtube.com/watch?v=8cgp2WNNKmQ",
+          "https://www.youtube.com/watch?v=5YG5mktgmTg",
+          "https://www.youtube.com/watch?v=LpWhaBVIrZw",
+        ]
+
         document.getElementById("mySidenav").style.width = "500px";
         document.getElementById("cube-id").innerText = id;
         document.getElementById("cube-uuid").innerText = uuid;
+        document.getElementById("cube-iframe").innerText = uuid;
+
+        iframe = document.getElementById('cube-iframe');
+        iframe.setAttribute("width", 450);
+        iframe.setAttribute("height", 300);
+        iframe.setAttribute("src", "https://www.youtube.com/watch?v=8cgp2WNNKmQ");
+        iframe.setAttribute("frameborder", 0)
+        iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+        iframe.setAttribute("allowfullscreen", true);
       }
 
       /* Set the width of the side navigation to 0 */
@@ -141,7 +204,7 @@
 
 					object.scale.x = Math.random() + 0.5;
 					object.scale.y = Math.random() + 0.5;
-					object.scale.z = Math.random() + 0.5;
+          object.scale.z = Math.random() + 0.5;
 
 					scene.add( object );
 
@@ -193,6 +256,7 @@
             INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
             INTERSECTED.material.emissive.setHex( 0x00ff00 );
             openNav(INTERSECTED.id, INTERSECTED.uuid);
+            // modal.style.display = "block";
           }
 
         } else {
@@ -232,7 +296,8 @@
 				renderer.render( scene, camera );
 
 			}
-		</script>
+    </script>
+
 
 	</body>
 </html>
